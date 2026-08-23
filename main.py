@@ -19,6 +19,7 @@ def main():
                 return  
         screen.fill("black")                                                  # fills the window with black screen
         player.draw(screen)                                                   # draw the player for every loop
+        player.update(dt)                                                     # updates the player's movement every loop
         pygame.display.flip()                                                 # Refresh the screen. Has to be always at the end of the loop
         dt = clock.tick(60) / 1000                                            # calculating delta time for fps
         
