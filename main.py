@@ -4,6 +4,7 @@ from logger import log_state, log_event
 from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
+from shot import Shot
 
 def main():
     pygame.init()                                                             # initializing pygame
@@ -16,6 +17,8 @@ def main():
     updatable = pygame.sprite.Group()                                         # Updateable, drawable, and asterodis are all groups
     drawable = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
+    shots = pygame.sprite.Group()
+    Shot.containers = (shots, updatable, drawable)                            # Adding Shot instances to shots, updatable, and drawable groups
     Asteroid.containers = (asteroids, updatable, drawable)                    # Adding Asteroid intances to asteroids, updatable, and drawable groups
     AsteroidField.containers = (updatable,)                                   # Adding AsteroidField instances to the updateable group
     Player.containers = (updatable, drawable)                                 # Adding Player instances into drawable and updateable groups
@@ -33,12 +36,12 @@ def main():
         for n in drawable:
             n.draw(screen)                                                    # draws each drawable instance individually per loop for every frame
 
-        updatable.update(dt)  
+        updatable.update(dt)                                                  # updates all updatable instances every loop
         for n in asteroids:
             if n.collides_with(player) == True:                               # Checks for asteroids collision with player
                 log_event("player_hit")
                 print("Game Over!") 
-                sys.exit()                                              # updates all updatable instances every loop
+                sys.exit()               
         pygame.display.flip()                                                 # Refresh the screen. Has to be always at the end of the loop
         dt = clock.tick(60) / 1000                                            # calculating delta time for fps
         
