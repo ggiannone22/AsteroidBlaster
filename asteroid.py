@@ -1,5 +1,5 @@
 from circleshape import CircleShape
-from constants import LINE_WIDTH
+from constants import *
 import pygame 
 
 class Asteroid(CircleShape):                # Class for the Asteroids

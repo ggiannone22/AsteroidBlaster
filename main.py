@@ -1,6 +1,6 @@
 import pygame
-from constants import SCREEN_WIDTH, SCREEN_HEIGHT
-from logger import log_state
+from constants import *
+from logger import log_state, log_event
 from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
@@ -33,7 +33,12 @@ def main():
         for n in drawable:
             n.draw(screen)                                                    # draws each drawable instance individually per loop for every frame
 
-        updatable.update(dt)                                                  # updates all updatable instances every loop
+        updatable.update(dt)  
+        for n in asteroids:
+            if n.collides_with(player) == True:                               # Checks for asteroids collision with player
+                log_event("player_hit")
+                print("Game Over!") 
+                sys.exit()                                              # updates all updatable instances every loop
         pygame.display.flip()                                                 # Refresh the screen. Has to be always at the end of the loop
         dt = clock.tick(60) / 1000                                            # calculating delta time for fps
         
