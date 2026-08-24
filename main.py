@@ -11,6 +11,9 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))           # creates new instance of the GUI window
     clock = pygame.time.Clock()                                               # Creating new Clock object
     dt = 0.0
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    Player.containers = (updatable, drawable)                                 #Adding Player instances into drawable and updateable groups
     player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)                          # Adds player to middle of screen
     while True:                                                               # needs infinite loop for gameloop
         log_state()
@@ -18,8 +21,9 @@ def main():
             if event.type == pygame.QUIT:                                     # Will kill program if user exits out of window
                 return  
         screen.fill("black")                                                  # fills the window with black screen
-        player.draw(screen)                                                   # draw the player for every loop
-        player.update(dt)                                                     # updates the player's movement every loop
+        for n in drawable:
+            n.draw(screen)                                                    # draws each drawable instance individually per loop for every frame
+        updatable.update(dt)                                                  # updates all updatable instances every loop
         pygame.display.flip()                                                 # Refresh the screen. Has to be always at the end of the loop
         dt = clock.tick(60) / 1000                                            # calculating delta time for fps
         
