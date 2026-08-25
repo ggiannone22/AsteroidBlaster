@@ -37,8 +37,13 @@ def main():
             n.draw(screen)                                                    # draws each drawable instance individually per loop for every frame
 
         updatable.update(dt)                                                  # updates all updatable instances every loop
-        for n in asteroids:
-            if n.collides_with(player) == True:                               # Checks for asteroids collision with player
+        for asteroid in asteroids:
+            for shot in shots:                                                # Checking for every shot if it collided with an asteroid, if so kill both asteroid and shot
+                if asteroid.collides_with(shot):
+                    log_event("asteroid_shot")
+                    asteroid.kill()
+                    shot.kill()
+            if asteroid.collides_with(player) == True:                               # Checks for asteroids collision with player
                 log_event("player_hit")
                 print("Game Over!") 
                 sys.exit()               
