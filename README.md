@@ -52,8 +52,8 @@ Have fun and Enjoy!!
 ## Installation
 
 ```bash
-git clone https://github.com/your-name/your-repo.git
-cd your-repo
+git clone https://github.com/ggiannone22/AsteroidBlaster
+cd <path-to-cloned-repo>
 uv sync 
 
 
