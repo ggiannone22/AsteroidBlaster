@@ -13,7 +13,6 @@ A classic Asteroids-style game built with Python and Pygame.
 - Rotating and shooting
 - Asteroid movement and splitting
 - Collision detection
-- Score tracking
 
 ## Requirements
 
@@ -26,9 +25,9 @@ uv run main.py
 
 ## Controls
 
-W / S: Move forward/backward
-A / D: Rotate
-Space: Shoot
+- W / S: Move forward/backward
+- A / D: Rotate
+- Space: Shoot
 
 ## Possiible future additions
 
