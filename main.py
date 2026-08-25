@@ -37,16 +37,19 @@ def main():
             n.draw(screen)                                                    # draws each drawable instance individually per loop for every frame
 
         updatable.update(dt)                                                  # updates all updatable instances every loop
+
         for asteroid in asteroids:
-            for shot in shots:                                                # Checking for every shot if it collided with an asteroid, if so kill both asteroid and shot
+            for shot in shots:                                                # Checking for every shot if it collided with an asteroid, if so split asteroid and kill shot
                 if asteroid.collides_with(shot):
                     log_event("asteroid_shot")
-                    asteroid.kill()
+                    asteroid.split()
                     shot.kill()
-            if asteroid.collides_with(player) == True:                               # Checks for asteroids collision with player
+
+            if asteroid.collides_with(player) == True:                        # Checks for asteroids collision with player
                 log_event("player_hit")
                 print("Game Over!") 
-                sys.exit()               
+                sys.exit()    
+
         pygame.display.flip()                                                 # Refresh the screen. Has to be always at the end of the loop
         dt = clock.tick(60) / 1000                                            # calculating delta time for fps
         
